@@ -19,4 +19,54 @@ const gamesSchema = new Schema({
     gender: { type: String, required: true },
 });
 
+// Crear un nuevo documento en la base de datos.
+const addNewGame = async () => {
+    try{
+
+    } catch {
+
+    }
+}
+// Obtener todos los documentos de la colección.
+const getGames = async () => {
+    try{
+
+    } catch {
+
+    }
+}
+// Obtener un documento por su ID.
+const getGame = async (id: string) => {
+    try{
+
+    } catch (error) {
+
+    }
+}
+// Actualizar un documento existente.
+const updateGame = async (id: string) => {
+    try{
+
+    } catch (error) {
+
+    }
+}
+// Eliminar un documento por su ID.
+const deleteGame = async (id: string) => {
+    try{
+
+    } catch {
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
 connectMongoDb();
