@@ -29,6 +29,8 @@ const gamesSchema = new Schema({
 });
 
 const Game = model ("Game", gamesSchema)
+
+
 // Creo un NUEVO JUEGO.
 const addNewGame = async (newGame: IGame) => {
     try{
@@ -50,14 +52,26 @@ const addNewGame = async (newGame: IGame) => {
             return{success: false, error: error.message};
     }
 }
+
+
 // Llamo a TODOS LOS JUEGOS
 const getGames = async () => {
     try{
-
-    } catch {
-
+        const allGames = await Game.find(); 
+        return{
+            success: true,
+            data: allGames,
+            message: "Estos son los juegos en la DB"
+        }
+    } catch (error: any) {
+        return {
+            success: false,
+            error: error.message
+        }
     }
 }
+
+
 // Llamo UN solo juego por ID.
 const getGame = async (id: string) => {
     try{
@@ -66,6 +80,8 @@ const getGame = async (id: string) => {
 
     }
 }
+
+
 // Actualizo UN juego por ID.
 const updateGame = async (id: string) => {
     try{
@@ -74,6 +90,8 @@ const updateGame = async (id: string) => {
 
     }
 }
+
+
 // Borro UN juego por ID.
 const deleteGame = async (id: string) => {
     try{
@@ -92,9 +110,10 @@ const deleteGame = async (id: string) => {
 const main = async ( ) => {
     connectMongoDb()
 
-    const saveGame = await addNewGame({title: "Grand Theft Auto V", year: 2013, rating: 97, gender: "Action-adventure" })
+    // const saveGame = await addNewGame({title: "Grand Theft Auto V", year: 2013, rating: 97, gender: "Action-adventure" })
+    const games = await getGames()
 
-    console.log(saveGame)
+    console.log(games)
 }
 
 main()
