@@ -21,7 +21,7 @@ interface IGame{
 
 const gamesSchema = new Schema({
     title: { type: String, required: true, unique: true },
-    year: { type: Number, required: true, unique: true },
+    year: { type: Number, required: true },
     rating: { type: Number, default: 0 },
     gender: { type: String, required: true },
 }, {
@@ -140,7 +140,7 @@ const deleteGame = async (id: string) => {
 const main = async ( ) => {
     connectMongoDb()
 
-    // const saveGame = await addNewGame({title: "Grand Theft Auto V", year: 2013, rating: 97, gender: "Action-adventure" })
+    // const saveGame = await addNewGame({title: "Minecraft: Bedrock Edition", year: 2011, rating: 93, gender: "Sandbox / Survival" })
 
     const games = await getGames()
 
