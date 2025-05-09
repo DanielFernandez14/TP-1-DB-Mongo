@@ -94,9 +94,16 @@ const getGame = async (id: string) => {
 
 
 // Actualizo UN juego por ID.
-const updateGame = async (id: string) => {
+//partial porque actualizamos algunas partes
+const updateGame = async (id: string, newData: Partial<IGame>) => {
     try{
-
+        const updateGame = await Game.findByIdAndUpdate(id, newData, {new: true})
+        if (!updateGame) return {success: false, message: "Juego no encontrado"}
+        return {
+            success: true,
+            data: updateGame,
+            message: "Juego modificado correctamente"
+        }
     } catch (error) {
 
     }
@@ -125,9 +132,11 @@ const main = async ( ) => {
 
     // const games = await getGames()
 
-    const games = await getGame("681d40b32ac55b0959c9b0f2")
+    // const games = await getGame("681d40b32ac55b0959c9b0f2")
 
-    console.log(games)
+    const updatedGame = await updateGame("681d40b32ac55b0959c9b0f2", {rating: 10})
+
+    console.log(updatedGame)
 }
 
 main()
