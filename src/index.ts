@@ -104,8 +104,11 @@ const updateGame = async (id: string, newData: Partial<IGame>) => {
             data: updateGame,
             message: "Juego modificado correctamente"
         }
-    } catch (error) {
-
+    } catch (error: any) {
+        return {
+            success: false,
+            error: error.message
+        }
     }
 }
 
@@ -139,15 +142,15 @@ const main = async ( ) => {
 
     // const saveGame = await addNewGame({title: "Grand Theft Auto V", year: 2013, rating: 97, gender: "Action-adventure" })
 
-    // const games = await getGames()
+    const games = await getGames()
 
     // const games = await getGame("681d40b32ac55b0959c9b0f2")
 
     // const updatedGame = await updateGame("681d40b32ac55b0959c9b0f2", {rating: 10})
 
-    const deletedGame = await deleteGame("681d40b32ac55b0959c9b0f2")
+    // const deletedGame = await deleteGame("681d40b32ac55b0959c9b0f2")
 
-    console.log(deletedGame)
+    console.log(games)
 }
 
 main()
