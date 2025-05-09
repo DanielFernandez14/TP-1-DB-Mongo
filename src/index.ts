@@ -85,7 +85,7 @@ const getGame = async (id: string) => {
         return{
             success: true,
             data: foundGame,
-            message: "Juego encontrado correctamente"
+            message: "Juego encontrado por ID correctamente"
         }
     } catch (error) {
 
@@ -122,6 +122,9 @@ const main = async ( ) => {
     connectMongoDb()
 
     // const saveGame = await addNewGame({title: "Grand Theft Auto V", year: 2013, rating: 97, gender: "Action-adventure" })
+
+    // const games = await getGames()
+
     const games = await getGame("681d40b32ac55b0959c9b0f2")
 
     console.log(games)
