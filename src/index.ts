@@ -113,9 +113,18 @@ const updateGame = async (id: string, newData: Partial<IGame>) => {
 // Borro UN juego por ID.
 const deleteGame = async (id: string) => {
     try{
-
-    } catch {
-
+        const deleteGame = await Game.findByIdAndDelete(id)
+        if(!deleteGame) return { success: false, message: "Juego no encontrado" }
+        return {
+            success: true,
+            data: deleteGame,
+            message: "Juego eliminado de la BD correctamente"
+        }
+    } catch (error: any) {
+        return{
+            success: false,
+            message: error.message
+        }
     }
 }
 
@@ -134,9 +143,11 @@ const main = async ( ) => {
 
     // const games = await getGame("681d40b32ac55b0959c9b0f2")
 
-    const updatedGame = await updateGame("681d40b32ac55b0959c9b0f2", {rating: 10})
+    // const updatedGame = await updateGame("681d40b32ac55b0959c9b0f2", {rating: 10})
 
-    console.log(updatedGame)
+    const deletedGame = await deleteGame("681d40b32ac55b0959c9b0f2")
+
+    console.log(deletedGame)
 }
 
 main()
